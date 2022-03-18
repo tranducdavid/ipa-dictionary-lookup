@@ -11,13 +11,7 @@ export function NotFoundPage() {
         <meta name="description" content="Page not found" />
       </Helmet>
       <Wrapper>
-        <Title>
-          4
-          <span role="img" aria-label="Crying Face">
-            😢
-          </span>
-          4
-        </Title>
+        <Title>404</Title>
         <P>Page not found.</P>
       </Wrapper>
     </>
