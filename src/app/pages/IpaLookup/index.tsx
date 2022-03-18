@@ -1,4 +1,4 @@
-import { Container, Box, Button, ButtonGroup, useTheme, styled, ButtonProps } from '@mui/material'
+import { Button, ButtonGroup, styled, ButtonProps } from '@mui/material'
 import * as React from 'react'
 
 enum SelectionButtonState {
@@ -20,8 +20,6 @@ const SelectionButton = styled(Button)<SelectionButtonProps>(({ state, theme }) 
 }))
 
 export function IpaLookup() {
-  const theme = useTheme()
-
   return (
     <>
       <ButtonGroup variant="contained" aria-label="outlined primary button group">

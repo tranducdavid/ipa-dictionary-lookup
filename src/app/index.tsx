@@ -14,7 +14,7 @@ import { IpaLookup } from './pages/IpaLookup/Loadable'
 import { HomePage } from './pages/HomePage/Loadable'
 import { NotFoundPage } from './components/NotFoundPage/Loadable'
 import { useTranslation } from 'react-i18next'
-import { Box, Container, createTheme, ThemeProvider } from '@mui/material'
+import { Box, Container, ThemeProvider } from '@mui/material'
 import { NavBar } from './components/NavBar'
 import { muiTheme } from 'styles/muiTheme'
 
