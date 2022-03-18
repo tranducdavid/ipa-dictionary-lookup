@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, styled, ButtonProps, Typography, useTheme, Box } from '@mui/material'
+import { Button, ButtonGroup, styled, ButtonProps, Typography, useTheme, Box, Grid } from '@mui/material'
 import * as React from 'react'
 
 enum SelectionButtonState {
@@ -18,32 +18,29 @@ export function IpaLookup() {
 
   return (
     <>
+      <Typography variant="h6">Phonemes</Typography>
       <Box mb={theme.spacing(2)}>
         <Typography>Consonants</Typography>
-        <ButtonGroup>
-          {consonants.map(consonant => (
-            <SelectionButton state={SelectionButtonState.DESELECTED}>{consonant}</SelectionButton>
-          ))}
-        </ButtonGroup>
+        {consonants.map(consonant => (
+          <SelectionButton state={SelectionButtonState.DESELECTED}>{consonant}</SelectionButton>
+        ))}
       </Box>
 
-      <Box mb={theme.spacing(2)}>
-        <Typography>Monophthongs</Typography>
-        <ButtonGroup>
+      <Grid container flexDirection="row">
+        <Box mb={theme.spacing(2)} mr={theme.spacing(2)}>
+          <Typography>Monophthongs</Typography>
           {monophthongs.map(monophthong => (
             <SelectionButton state={SelectionButtonState.DESELECTED}>{monophthong}</SelectionButton>
           ))}
-        </ButtonGroup>
-      </Box>
+        </Box>
 
-      <Box mb={theme.spacing(2)}>
-        <Typography>Diphthongs</Typography>
-        <ButtonGroup>
+        <Box mb={theme.spacing(2)}>
+          <Typography>Diphthongs</Typography>
           {diphthongs.map(diphthong => (
             <SelectionButton state={SelectionButtonState.DESELECTED}>{diphthong}</SelectionButton>
           ))}
-        </ButtonGroup>
-      </Box>
+        </Box>
+      </Grid>
 
       <ButtonGroup>
         <SelectionButton state={SelectionButtonState.DESELECTED}>test1</SelectionButton>
@@ -59,10 +56,14 @@ type SelectionButtonProps = {
 } & ButtonProps
 
 const SelectionButton = styled(Button)<SelectionButtonProps>(({ state, theme }) => ({
+  minWidth: theme.spacing(5),
+  lineHeight: '1rem',
   textTransform: 'none',
-  backgroundColor: theme.palette.selectionButtonColors?.background[state],
-  borderColor: theme.palette.selectionButtonColors?.borderColor,
   color: theme.palette.selectionButtonColors?.text[state],
+  backgroundColor: theme.palette.selectionButtonColors?.background[state],
+  border: `solid 1px ${theme.palette.selectionButtonColors?.borderColor}`,
+  margin: '1px',
+  padding: '6px',
   '&:hover': {
     backgroundColor: theme.palette.selectionButtonColors?.background.hover[state],
   },

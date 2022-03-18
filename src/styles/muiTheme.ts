@@ -3,9 +3,9 @@ import { createTheme } from '@mui/material'
 export const muiTheme = createTheme({
   palette: {
     selectionButtonColors: {
-      borderColor: '#202020',
+      borderColor: '#a0a0a0',
       background: {
-        deselected: '#ffffff',
+        deselected: '#f0f0f0',
         required: '#1976d2',
         forbidden: '#d32f2f',
         hover: {
