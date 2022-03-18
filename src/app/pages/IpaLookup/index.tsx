@@ -1,7 +1,6 @@
-import { Typography, useTheme, Box, Grid } from '@mui/material'
+import { Typography, Grid } from '@mui/material'
 import * as React from 'react'
 import { useState } from 'react'
-import { SelectionButton, SelectionMode } from './SelectionButton'
 import { symbolsToSelectionButtonState, SelectionButtonRow, SelectionButtonState } from './SelectionButtonRow'
 
 // ˈɪəntsɫɹkdiˌmɝzɛɑʊæbpoafʃeɡɔvŋuhwʒjθð
@@ -10,9 +9,9 @@ const monophthongs = ['ɑ', 'æ', 'ɛ', 'ɝ', 'ɔ', 'ə', 'ɪ', 'ʊ', 'i', 'u']
 const diphthongs = ['aɪ', 'aʊ', 'ɔɪ', 'eɪ', 'oʊ']
 
 export function IpaLookup() {
-  const theme = useTheme()
-
   const [consonantsState, setConsonantsState] = useState<SelectionButtonState>(symbolsToSelectionButtonState(consonants))
+  const [monophthongsState, setMonophthongsState] = useState<SelectionButtonState>(symbolsToSelectionButtonState(monophthongs))
+  const [diphthongsState, setDiphthongsState] = useState<SelectionButtonState>(symbolsToSelectionButtonState(diphthongs))
 
   return (
     <>
@@ -20,23 +19,8 @@ export function IpaLookup() {
       <SelectionButtonRow label="Consonants" symbols={consonants} state={consonantsState} setState={setConsonantsState} />
 
       <Grid container flexDirection="row">
-        <Box mb={theme.spacing(2)} mr={theme.spacing(2)}>
-          <Typography>Monophthongs</Typography>
-          {monophthongs.map(monophthong => (
-            <SelectionButton key={monophthong} selected={SelectionMode.DESELECTED}>
-              {monophthong}
-            </SelectionButton>
-          ))}
-        </Box>
-
-        <Box mb={theme.spacing(2)}>
-          <Typography>Diphthongs</Typography>
-          {diphthongs.map(diphthong => (
-            <SelectionButton key={diphthong} selected={SelectionMode.DESELECTED}>
-              {diphthong}
-            </SelectionButton>
-          ))}
-        </Box>
+        <SelectionButtonRow label="Monophthongs" symbols={monophthongs} state={monophthongsState} setState={setMonophthongsState} />
+        <SelectionButtonRow label="Diphthongs" symbols={diphthongs} state={diphthongsState} setState={setDiphthongsState} />
       </Grid>
     </>
   )
