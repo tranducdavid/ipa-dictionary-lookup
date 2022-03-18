@@ -3,6 +3,7 @@ import { createTheme } from '@mui/material'
 export const muiTheme = createTheme({
   palette: {
     selectionButtonColors: {
+      borderColor: '#202020',
       background: {
         deselected: '#ffffff',
         required: '#1976d2',
@@ -14,7 +15,7 @@ export const muiTheme = createTheme({
         },
       },
       text: {
-        deselected: '#000000',
+        deselected: '#202020',
         required: '#ffffff',
         forbidden: '#ffffff',
       },
