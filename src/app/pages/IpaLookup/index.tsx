@@ -3,6 +3,8 @@ import * as React from 'react'
 import { useState } from 'react'
 import { symbolsToSelectionButtonState, SelectionButtonRow, SelectionButtonState } from './SelectionButtonRow'
 
+const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
 // ˈɪəntsɫɹkdiˌmɝzɛɑʊæbpoafʃeɡɔvŋuhwʒjθð
 const consonants = ['b', 'd', 'dʒ', 'ð', 'f', 'ɡ', 'h', 'j', 'k', 'ɫ', 'm', 'n', 'ŋ', 'p', 'ɹ', 's', 'ʃ', 't', 'tʃ', 'θ', 'v', 'w', 'z', 'ʒ']
 const monophthongs = ['ɑ', 'æ', 'ɛ', 'ɝ', 'ɔ', 'ə', 'ɪ', 'ʊ', 'i', 'u']
@@ -13,12 +15,17 @@ export function IpaLookup() {
 
   const useSymbolSelectionState = (symbols: string[]) => useState<SelectionButtonState>(symbolsToSelectionButtonState(symbols))
 
+  const [lettersState, setLettersState] = useSymbolSelectionState(letters)
+
   const [consonantsState, setConsonantsState] = useSymbolSelectionState(consonants)
   const [monophthongsState, setMonophthongsState] = useSymbolSelectionState(monophthongs)
   const [diphthongsState, setDiphthongsState] = useSymbolSelectionState(diphthongs)
 
   return (
     <>
+      <Typography variant="h6">Letters</Typography>
+      <SelectionButtonRow symbols={letters} state={lettersState} setState={setLettersState} />
+
       <Typography variant="h6">Phonemes</Typography>
       <SelectionButtonRow label="Consonants" symbols={consonants} state={consonantsState} setState={setConsonantsState} />
 

@@ -11,7 +11,7 @@ export type SelectionButtonState = { [symbol: string]: SelectionMode }
 type SelectionButtonDispatch = React.Dispatch<React.SetStateAction<SelectionButtonState>>
 
 type SelectionButtonRowProps = {
-  label: string
+  label?: string
   symbols: string[]
   state: SelectionButtonState
   setState: SelectionButtonDispatch
@@ -24,7 +24,7 @@ export function SelectionButtonRow({ label, symbols, state, setState }: Selectio
   }
   return (
     <Box mb={theme.spacing(2)}>
-      <Typography>{label}</Typography>
+      {label && <Typography>{label}</Typography>}
       {symbols.map(symbol => (
         <SelectionButton key={symbol} selected={state[symbol]} onClick={onClick(symbol, state, setState)}>
           {symbol}
