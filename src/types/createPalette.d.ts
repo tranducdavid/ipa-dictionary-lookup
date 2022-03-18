@@ -4,18 +4,18 @@ import * as createPalette from '@mui/material/styles/createPalette'
 interface SelectionButtonColors {
   background: {
     deselected: string
-    whitelist: string
-    blacklist: string
+    required: string
+    forbidden: string
     hover: {
       deselected: string
-      whitelist: string
-      blacklist: string
+      required: string
+      forbidden: string
     }
   }
   text: {
     deselected: string
-    whitelist: string
-    blacklist: string
+    required: string
+    forbidden: string
   }
 }
 

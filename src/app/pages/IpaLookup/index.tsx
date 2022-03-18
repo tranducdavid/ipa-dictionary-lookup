@@ -3,8 +3,8 @@ import * as React from 'react'
 
 enum SelectionButtonState {
   DESELECTED = 'deselected',
-  WHITELIST = 'whitelist',
-  BLACKLIST = 'blacklist',
+  REQUIRED = 'required',
+  FORBIDDEN = 'forbidden',
 }
 
 interface SelectionButtonProps extends ButtonProps {
@@ -24,8 +24,8 @@ export function IpaLookup() {
     <>
       <ButtonGroup variant="contained" aria-label="outlined primary button group">
         <SelectionButton state={SelectionButtonState.DESELECTED}>One</SelectionButton>
-        <SelectionButton state={SelectionButtonState.WHITELIST}>Two</SelectionButton>
-        <SelectionButton state={SelectionButtonState.BLACKLIST}>Three</SelectionButton>
+        <SelectionButton state={SelectionButtonState.REQUIRED}>Two</SelectionButton>
+        <SelectionButton state={SelectionButtonState.FORBIDDEN}>Three</SelectionButton>
       </ButtonGroup>
     </>
   )

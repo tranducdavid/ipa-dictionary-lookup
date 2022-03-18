@@ -5,18 +5,18 @@ export const muiTheme = createTheme({
     selectionButtonColors: {
       background: {
         deselected: '#ffffff',
-        whitelist: '#1976d2',
-        blacklist: '#d32f2f',
+        required: '#1976d2',
+        forbidden: '#d32f2f',
         hover: {
           deselected: '#f7f5f5',
-          whitelist: '#1565c0',
-          blacklist: '#c22e29',
+          required: '#1565c0',
+          forbidden: '#c22e29',
         },
       },
       text: {
         deselected: '#000000',
-        whitelist: '#ffffff',
-        blacklist: '#ffffff',
+        required: '#ffffff',
+        forbidden: '#ffffff',
       },
     },
   },
