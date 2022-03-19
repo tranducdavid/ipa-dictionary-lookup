@@ -70,8 +70,9 @@
     "web-vitals": "2.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "generateHashes": "node ./build-utils/prepareHashes.js",
+    "start": "yarn generateHashes && react-scripts start",
+    "build": "yarn generateHashes && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start:prod": "yarn run build && serve -s build",
