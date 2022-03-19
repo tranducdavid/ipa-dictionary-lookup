@@ -17,9 +17,11 @@ import { useTranslation } from 'react-i18next'
 import { Box, Container, ThemeProvider } from '@mui/material'
 import { NavBar } from './components/NavBar'
 import { muiTheme } from 'styles/muiTheme'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 export function App() {
   const { i18n } = useTranslation()
+  const queryClient = new QueryClient()
 
   return (
     <ThemeProvider theme={muiTheme}>
@@ -28,16 +30,18 @@ export function App() {
           <meta name="description" content="IPA Dictionary lookup" />
         </Helmet>
 
-        <NavBar />
-        <Container>
-          <Box mt={2}>
-            <Switch>
-              <Route exact path="/" component={IpaLookup} />
-              <Route exact path="/home" component={HomePage} />
-              <Route component={NotFoundPage} />
-            </Switch>
-          </Box>
-        </Container>
+        <QueryClientProvider client={queryClient}>
+          <NavBar />
+          <Container>
+            <Box mt={2}>
+              <Switch>
+                <Route exact path="/" component={IpaLookup} />
+                <Route exact path="/home" component={HomePage} />
+                <Route component={NotFoundPage} />
+              </Switch>
+            </Box>
+          </Container>
+        </QueryClientProvider>
       </BrowserRouter>
     </ThemeProvider>
   )

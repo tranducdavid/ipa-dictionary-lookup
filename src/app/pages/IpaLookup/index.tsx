@@ -2,6 +2,8 @@ import { Typography, Grid, Box, useTheme } from '@mui/material'
 import * as React from 'react'
 import { useState } from 'react'
 import { symbolsToSelectionButtonState, SelectionButtonRow, SelectionButtonState } from './SelectionButtonRow'
+import { Loading } from 'app/components/Loading'
+import { useDictionaryQuery } from 'app/queries'
 
 const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
@@ -11,6 +13,8 @@ const monophthongs = ['ɑ', 'æ', 'ɛ', 'ɝ', 'ɔ', 'ə', 'ɪ', 'ʊ', 'i', 'u']
 const diphthongs = ['aɪ', 'aʊ', 'ɔɪ', 'eɪ', 'oʊ']
 
 export function IpaLookup() {
+  const { data: dictionary, status: dictionaryStatus } = useDictionaryQuery()
+
   const theme = useTheme()
 
   const useSymbolSelectionState = (symbols: string[]) => useState<SelectionButtonState>(symbolsToSelectionButtonState(symbols))
@@ -23,6 +27,7 @@ export function IpaLookup() {
 
   return (
     <>
+      {dictionaryStatus !== 'success' && <Loading />}
       <Typography variant="h6">Letters</Typography>
       <SelectionButtonRow symbols={letters} state={lettersState} setState={setLettersState} />
 
