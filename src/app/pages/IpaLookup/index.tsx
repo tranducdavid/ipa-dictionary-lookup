@@ -11,6 +11,7 @@ const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm'
 const consonants = ['b', 'd', 'dʒ', 'ð', 'f', 'ɡ', 'h', 'j', 'k', 'ɫ', 'm', 'n', 'ŋ', 'p', 'ɹ', 's', 'ʃ', 't', 'tʃ', 'θ', 'v', 'w', 'z', 'ʒ']
 const monophthongs = ['ɑ', 'æ', 'ɛ', 'ɝ', 'ɔ', 'ə', 'ɪ', 'ʊ', 'i', 'u']
 const diphthongs = ['aɪ', 'aʊ', 'ɔɪ', 'eɪ', 'oʊ']
+const phonemes = [consonants, monophthongs, diphthongs].flat()
 
 export function IpaLookup() {
   const { data: dictionary, status: dictionaryStatus } = useDictionaryQuery()
@@ -18,12 +19,8 @@ export function IpaLookup() {
   const theme = useTheme()
 
   const useSymbolSelectionState = (symbols: string[]) => useState<SelectionButtonState>(symbolsToSelectionButtonState(symbols))
-
   const [lettersState, setLettersState] = useSymbolSelectionState(letters)
-
-  const [consonantsState, setConsonantsState] = useSymbolSelectionState(consonants)
-  const [monophthongsState, setMonophthongsState] = useSymbolSelectionState(monophthongs)
-  const [diphthongsState, setDiphthongsState] = useSymbolSelectionState(diphthongs)
+  const [phonemesState, setPhonemesState] = useSymbolSelectionState(phonemes)
 
   return (
     <>
@@ -32,13 +29,13 @@ export function IpaLookup() {
       <SelectionButtonRow symbols={letters} state={lettersState} setState={setLettersState} />
 
       <Typography variant="h6">Phonemes</Typography>
-      <SelectionButtonRow label="Consonants" symbols={consonants} state={consonantsState} setState={setConsonantsState} />
+      <SelectionButtonRow label="Consonants" symbols={consonants} state={phonemesState} setState={setPhonemesState} />
 
       <Grid container flexDirection="row">
         <Box mr={theme.spacing(2)}>
-          <SelectionButtonRow label="Monophthongs" symbols={monophthongs} state={monophthongsState} setState={setMonophthongsState} />
+          <SelectionButtonRow label="Monophthongs" symbols={monophthongs} state={phonemesState} setState={setPhonemesState} />
         </Box>
-        <SelectionButtonRow label="Diphthongs" symbols={diphthongs} state={diphthongsState} setState={setDiphthongsState} />
+        <SelectionButtonRow label="Diphthongs" symbols={diphthongs} state={phonemesState} setState={setPhonemesState} />
       </Grid>
     </>
   )

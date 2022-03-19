@@ -1,6 +1,6 @@
 type IpaDictionaryEntry = {
-  readonly word: string
-  readonly ipa: ReadonlyArray<string>
+  readonly spelling: string
+  readonly pronunciation: ReadonlyArray<string>
 }
 
 export type IpaDictionary = ReadonlyArray<IpaDictionaryEntry>

@@ -4,9 +4,8 @@ import { IpaDictionary } from './types'
 
 function preprocessDictionary(dictionary: string): IpaDictionary {
   return dictionary.split('\n').map(row => {
-    const [word, pronunciation] = row.split('\t')
-    const ipa = pronunciation.split(', ')
-    return { word, ipa }
+    const split = row.split('\t')
+    return { spelling: split[0], pronunciation: split[1].split(', ') }
   })
 }
 
