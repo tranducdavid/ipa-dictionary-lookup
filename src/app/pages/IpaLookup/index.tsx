@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { symbolsToSelectionButtonState, SelectionButtonRow, SelectionButtonState } from './SelectionButtonRow'
 import { Loading } from 'app/components/Loading'
 import { useDictionaryQuery } from 'app/queries'
+import { DictionaryTable } from './DictionaryTable'
 
 const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
@@ -25,17 +26,25 @@ export function IpaLookup() {
   return (
     <>
       {dictionaryStatus !== 'success' && <Loading />}
-      <Typography variant="h6">Letters</Typography>
-      <SelectionButtonRow symbols={letters} state={lettersState} setState={setLettersState} />
+      <Grid container>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h6">Letters</Typography>
+          <SelectionButtonRow symbols={letters} state={lettersState} setState={setLettersState} />
 
-      <Typography variant="h6">Phonemes</Typography>
-      <SelectionButtonRow label="Consonants" symbols={consonants} state={phonemesState} setState={setPhonemesState} />
+          <Typography variant="h6">Phonemes</Typography>
+          <SelectionButtonRow label="Consonants" symbols={consonants} state={phonemesState} setState={setPhonemesState} />
 
-      <Grid container flexDirection="row">
-        <Box mr={theme.spacing(2)}>
-          <SelectionButtonRow label="Monophthongs" symbols={monophthongs} state={phonemesState} setState={setPhonemesState} />
-        </Box>
-        <SelectionButtonRow label="Diphthongs" symbols={diphthongs} state={phonemesState} setState={setPhonemesState} />
+          <Grid container flexDirection="row">
+            <Box mr={theme.spacing(2)}>
+              <SelectionButtonRow label="Monophthongs" symbols={monophthongs} state={phonemesState} setState={setPhonemesState} />
+            </Box>
+            <SelectionButtonRow label="Diphthongs" symbols={diphthongs} state={phonemesState} setState={setPhonemesState} />
+          </Grid>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h6">Dictionary</Typography>
+          <DictionaryTable data={dictionary ?? []} />
+        </Grid>
       </Grid>
     </>
   )
