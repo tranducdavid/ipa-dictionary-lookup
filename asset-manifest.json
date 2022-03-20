@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/ipa-dictionary-lookup/static/css/main.e18a66c1.css",
-    "main.js": "/ipa-dictionary-lookup/static/js/main.6bd26610.js",
-    "static/js/883.34bf8c17.chunk.js": "/ipa-dictionary-lookup/static/js/883.34bf8c17.chunk.js",
+    "main.js": "/ipa-dictionary-lookup/static/js/main.f136922a.js",
+    "static/js/752.14d196a2.chunk.js": "/ipa-dictionary-lookup/static/js/752.14d196a2.chunk.js",
     "static/js/621.518d4485.chunk.js": "/ipa-dictionary-lookup/static/js/621.518d4485.chunk.js",
     "static/js/129.6ced4e68.chunk.js": "/ipa-dictionary-lookup/static/js/129.6ced4e68.chunk.js",
     "static/js/27.fa75e54c.chunk.js": "/ipa-dictionary-lookup/static/js/27.fa75e54c.chunk.js",
-    "static/js/931.5cfcf9db.chunk.js": "/ipa-dictionary-lookup/static/js/931.5cfcf9db.chunk.js",
+    "static/js/229.6851aea4.chunk.js": "/ipa-dictionary-lookup/static/js/229.6851aea4.chunk.js",
     "static/js/814.852e07ba.chunk.js": "/ipa-dictionary-lookup/static/js/814.852e07ba.chunk.js",
     "static/media/github-icon.svg": "/ipa-dictionary-lookup/static/media/github-icon.cc72f0952f8f5179b4c3406bed5fb8cc.svg",
     "index.html": "/ipa-dictionary-lookup/index.html"
   },
   "entrypoints": [
     "static/css/main.e18a66c1.css",
-    "static/js/main.6bd26610.js"
+    "static/js/main.f136922a.js"
   ]
 }
