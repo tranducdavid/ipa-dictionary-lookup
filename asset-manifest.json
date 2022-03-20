@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/ipa-dictionary-lookup/static/css/main.e18a66c1.css",
+    "main.js": "/ipa-dictionary-lookup/static/js/main.5acd10f8.js",
+    "static/js/483.b086983f.chunk.js": "/ipa-dictionary-lookup/static/js/483.b086983f.chunk.js",
+    "static/js/621.518d4485.chunk.js": "/ipa-dictionary-lookup/static/js/621.518d4485.chunk.js",
+    "static/js/129.6ced4e68.chunk.js": "/ipa-dictionary-lookup/static/js/129.6ced4e68.chunk.js",
+    "static/js/27.fa75e54c.chunk.js": "/ipa-dictionary-lookup/static/js/27.fa75e54c.chunk.js",
+    "static/js/476.7be13ef0.chunk.js": "/ipa-dictionary-lookup/static/js/476.7be13ef0.chunk.js",
+    "static/js/814.852e07ba.chunk.js": "/ipa-dictionary-lookup/static/js/814.852e07ba.chunk.js",
+    "static/media/github-icon.svg": "/ipa-dictionary-lookup/static/media/github-icon.cc72f0952f8f5179b4c3406bed5fb8cc.svg",
+    "index.html": "/ipa-dictionary-lookup/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.e18a66c1.css",
+    "static/js/main.5acd10f8.js"
+  ]
+}
