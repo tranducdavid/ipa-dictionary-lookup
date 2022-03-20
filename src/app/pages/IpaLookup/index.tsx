@@ -73,9 +73,11 @@ export function IpaLookup() {
             <SelectionButtonRow label="Diphthongs" symbols={diphthongs} state={phonemesState} setState={setPhonemesState} />
           </Grid>
 
-          <Button variant="contained" endIcon={<RestartAltIcon />} onClick={OnClickReset}>
-            Reset
-          </Button>
+          <Box mb={theme.spacing(2)}>
+            <Button sx={{ textTransform: 'none', fontWeight: 'bold' }} variant="contained" endIcon={<RestartAltIcon />} onClick={OnClickReset}>
+              Reset
+            </Button>
+          </Box>
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography variant="h6">Dictionary</Typography>
