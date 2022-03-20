@@ -23,3 +23,14 @@ export const cacheResults = <TF extends (...args: any) => any>(
     return cache[key]
   }) as TF
 }
+
+export function debounce<TF extends (...args: any) => any>(f: TF, timeout = 300): (...args: Parameters<TF>) => void {
+  let timer
+  return (...args) => {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      timer = null
+      f(...args)
+    }, timeout)
+  }
+}
