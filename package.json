@@ -75,9 +75,9 @@
   "scripts": {
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
-    "generateHashes": "node ./build-utils/prepareHashes.js",
-    "start": "yarn generateHashes && react-scripts start",
-    "build": "yarn generateHashes && react-scripts build",
+    "prebuild": "node ./build-utils/prepareHashes.js && node ./build-utils/prepareCommitHash.js",
+    "start": "yarn prebuild && react-scripts start",
+    "build": "yarn prebuild && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start:prod": "yarn run build && serve -s build",

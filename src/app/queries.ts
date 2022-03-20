@@ -24,3 +24,9 @@ export function useDictionaryQuery() {
     return preprocessDictionary(dictionary)
   })
 }
+
+export function useCommitHash() {
+  return useQuery('commitHash', async () => {
+    return await (await fetch(`${process.env.PUBLIC_URL}/commitHash.hex`)).text()
+  })
+}
