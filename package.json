@@ -4,6 +4,7 @@
   "private": true,
   "author": "David Tran Duc",
   "license": "MIT",
+  "homepage": "https://tranducdavid.github.io/ipa-dictionary-lookup",
   "dependencies": {
     "@emotion/react": "11.8.2",
     "@emotion/styled": "11.8.1",
@@ -32,6 +33,7 @@
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-react-hooks": "4.3.0",
     "fontfaceobserver": "2.1.0",
+    "gh-pages": "3.2.3",
     "husky": "7.0.4",
     "i18next": "21.6.6",
     "i18next-browser-languagedetector": "6.1.2",
@@ -71,6 +73,8 @@
     "web-vitals": "2.1.2"
   },
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "generateHashes": "node ./build-utils/prepareHashes.js",
     "start": "yarn generateHashes && react-scripts start",
     "build": "yarn generateHashes && react-scripts build",
