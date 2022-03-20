@@ -64,7 +64,7 @@ export function DictionaryTable({ data }: DictionaryTableProps) {
             </TableCell>
           </TableRow>
           {(rowsPerPage > 0 ? displayData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : displayData).map(row => (
-            <TableRow key={row.spelling} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+            <TableRow key={row.spelling}>
               <TableCell>{row.spelling}</TableCell>
               <TableCell>{row.pronunciation.join(', ')}</TableCell>
             </TableRow>
