@@ -1,4 +1,4 @@
-import { Typography, Grid, Box, useTheme } from '@mui/material'
+import { Typography, Grid, Box, useTheme, Button } from '@mui/material'
 import * as React from 'react'
 import { useMemo, useState } from 'react'
 import { symbolsToSelectionButtonState, SelectionButtonRow, SelectionButtonState } from './SelectionButtonRow'
@@ -7,6 +7,7 @@ import { useDictionaryQuery } from 'app/queries'
 import { DictionaryTable } from './DictionaryTable'
 import { SelectionMode } from './SelectionButton'
 import { SearchEngineManager } from './SearchEngine'
+import RestartAltIcon from '@mui/icons-material/RestartAlt'
 
 const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
@@ -49,6 +50,11 @@ export function IpaLookup() {
 
   const filteredDictionary = useMemo(() => searchEngine?.search(searchDictionaryQueryArgs), [searchEngine, searchDictionaryQueryArgs])
 
+  const OnClickReset = () => {
+    setLettersState(symbolsToSelectionButtonState(letters))
+    setPhonemesState(symbolsToSelectionButtonState(phonemes))
+  }
+
   return (
     <>
       <Loading open={isLoading} />
@@ -66,6 +72,10 @@ export function IpaLookup() {
             </Box>
             <SelectionButtonRow label="Diphthongs" symbols={diphthongs} state={phonemesState} setState={setPhonemesState} />
           </Grid>
+
+          <Button variant="contained" endIcon={<RestartAltIcon />} onClick={OnClickReset}>
+            Reset
+          </Button>
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography variant="h6">Dictionary</Typography>
