@@ -26,7 +26,7 @@ export function SelectionButtonRow({ label, symbols, state, setState }: Selectio
     <Box mb={theme.spacing(2)}>
       {label && <Typography>{label}</Typography>}
       {symbols.map(symbol => (
-        <SelectionButton key={symbol} selected={state[symbol]} onClick={onClick(symbol, state, setState)}>
+        <SelectionButton variant="contained" key={symbol} selected={state[symbol]} onClick={onClick(symbol, state, setState)}>
           {symbol}
         </SelectionButton>
       ))}
