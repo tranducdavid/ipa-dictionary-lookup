@@ -8,6 +8,7 @@ import { DictionaryTable } from './DictionaryTable'
 import { SelectionMode } from './SelectionButton'
 import { SearchEngineManager } from './SearchEngine'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
+import { HelpTooltipIcon } from 'app/components/HelpTooltipIcon'
 
 const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
@@ -60,7 +61,10 @@ export function IpaLookup() {
       <Loading open={isLoading} />
       <Grid container>
         <Grid item xs={12} md={6}>
-          <Typography variant="h6">Letters</Typography>
+          <Typography variant="h6">
+            Letters
+            <HelpTooltipIcon tooltip="Clicking on a button changes the requirement for the dictionary. Blue is required, red is forbidden, white is either." />
+          </Typography>
           <SelectionButtonRow symbols={letters} state={lettersState} setState={setLettersState} />
 
           <Typography variant="h6">Phonemes</Typography>
@@ -80,7 +84,10 @@ export function IpaLookup() {
           </Box>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography variant="h6">Dictionary</Typography>
+          <Typography variant="h6">
+            Dictionary
+            <HelpTooltipIcon tooltip="Search can be used for both spelling and phonetic lookup." />
+          </Typography>
           <Box sx={{ position: 'relative' }}>
             <DictionaryTable data={filteredDictionary ?? []} />
           </Box>
