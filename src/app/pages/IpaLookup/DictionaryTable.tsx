@@ -44,7 +44,7 @@ export function DictionaryTable({ data }: DictionaryTableProps) {
   }
 
   const displayData: IpaDictionary = useMemo(
-    () => (searchValue !== '' ? data.filter(e => e.pronunciation.includes(searchValue) || e.spelling.includes(searchValue)) : data),
+    () => (searchValue !== '' ? data.filter(e => e.pronunciation.some(e => e.includes(searchValue)) || e.spelling.includes(searchValue)) : data),
     [data, searchValue],
   )
 
