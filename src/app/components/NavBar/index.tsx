@@ -14,7 +14,6 @@ export function NavBar() {
             IPA Dictionary Lookup
           </Typography>
           <CommitLink
-            fontSize="0.75rem"
             href={`https://github.com/tranducdavid/ipa-dictionary-lookup/tree/${commitHash}`}
             target="_blank"
             title="Github Page"

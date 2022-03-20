@@ -1,4 +1,4 @@
-import { Typography, Grid, Box, useTheme, Button } from '@mui/material'
+import { Typography, Grid, Box, useTheme, Button, Link } from '@mui/material'
 import * as React from 'react'
 import { useMemo, useState } from 'react'
 import { symbolsToSelectionButtonState, SelectionButtonRow, SelectionButtonState } from './SelectionButtonRow'
@@ -90,6 +90,12 @@ export function IpaLookup() {
           </Typography>
           <Box sx={{ position: 'relative' }}>
             <DictionaryTable data={filteredDictionary ?? []} />
+            <Typography sx={{ opacity: 0.8, fontSize: '0.75rem', marginTop: theme.spacing(1) }} textAlign="center">
+              Data source:
+              <Link href={`https://github.com/open-dict-data/ipa-dict`} target="_blank" title="Github Page" rel="noopener noreferrer" alignSelf="center">
+                https://github.com/open-dict-data/ipa-dict
+              </Link>
+            </Typography>
           </Box>
         </Grid>
       </Grid>
