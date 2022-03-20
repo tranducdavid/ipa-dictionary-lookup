@@ -11,7 +11,7 @@ function preprocessDictionary(dictionary: string): IpaDictionary {
 
 export function useDictionaryQuery() {
   return useQuery('dictionaryData', async () => {
-    const dictionaryHash = await (await fetch('/dictionary_en_US.sha256')).text()
+    const dictionaryHash = await (await fetch(`${process.env.PUBLIC_URL}/dictionary_en_US.sha256`)).text()
     const localDictionary = localStorage.getItem('dictionary_en_US')
 
     if (localDictionary) {
@@ -19,7 +19,7 @@ export function useDictionaryQuery() {
       if (localDictionaryHash === dictionaryHash) return preprocessDictionary(localDictionary)
     }
 
-    const dictionary = await (await fetch('/dictionary_en_US.txt')).text()
+    const dictionary = await (await fetch(`${process.env.PUBLIC_URL}/dictionary_en_US.txt`)).text()
     localStorage.setItem('dictionary_en_US', dictionary)
     return preprocessDictionary(dictionary)
   })

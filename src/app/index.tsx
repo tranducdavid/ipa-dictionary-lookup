@@ -25,7 +25,7 @@ export function App() {
 
   return (
     <ThemeProvider theme={muiTheme}>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Helmet titleTemplate="%s" defaultTitle="IPA Dictionary lookup" htmlAttributes={{ lang: i18n.language }}>
           <meta name="description" content="IPA Dictionary lookup" />
         </Helmet>
