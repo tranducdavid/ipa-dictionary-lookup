@@ -26,10 +26,10 @@ interface SelectionButtonColors {
 
 declare module '@mui/material/styles/createPalette' {
   interface PaletteOptions {
-    selectionButtonColors?: SelectionButtonColors
+    selectionButtonColors: SelectionButtonColors
   }
 
   interface Palette {
-    selectionButtonColors?: SelectionButtonColors
+    selectionButtonColors: SelectionButtonColors
   }
 }
