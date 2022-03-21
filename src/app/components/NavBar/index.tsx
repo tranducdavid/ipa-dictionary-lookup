@@ -14,7 +14,7 @@ export function NavBar({ toggleDarkMode }: NavBarProps) {
   const theme = useTheme()
 
   return (
-    <NavBarBox>
+    <NavBarBox sx={{ boxShadow: 5 }}>
       <NavBarContainer>
         <Grid container flexDirection="row" alignItems="center">
           <PrimaryContrastTypography variant="h6" fontWeight="bold">
