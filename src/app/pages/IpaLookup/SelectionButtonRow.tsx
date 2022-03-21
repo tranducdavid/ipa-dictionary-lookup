@@ -1,4 +1,5 @@
-import { Typography, useTheme, Box } from '@mui/material'
+import { useTheme, Box } from '@mui/material'
+import { TextPrimaryTypography } from 'app/components/Typography/PrimaryTypography'
 import * as React from 'react'
 import { SelectionButton, SelectionMode } from './SelectionButton'
 
@@ -24,7 +25,7 @@ export function SelectionButtonRow({ label, symbols, state, setState }: Selectio
   }
   return (
     <Box mb={theme.spacing(2)}>
-      {label && <Typography>{label}</Typography>}
+      {label && <TextPrimaryTypography>{label}</TextPrimaryTypography>}
       {symbols.map(symbol => (
         <SelectionButton variant="contained" key={symbol} selected={state[symbol]} onClick={onClick(symbol, state, setState)}>
           {symbol}

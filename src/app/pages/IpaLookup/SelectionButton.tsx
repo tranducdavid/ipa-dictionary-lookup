@@ -16,7 +16,7 @@ export const SelectionButton = styled(Button)<SelectionButtonProps>(({ selected,
   textTransform: 'none',
   color: theme.palette.selectionButtonColors?.text[selected],
   backgroundColor: theme.palette.selectionButtonColors?.background[selected],
-  border: `solid 1px ${theme.palette.selectionButtonColors?.borderColor}`,
+  border: `solid 1px ${theme.palette.selectionButtonColors?.borderColor[selected]}`,
   margin: '1px',
   padding: '6px',
   '&:hover': {

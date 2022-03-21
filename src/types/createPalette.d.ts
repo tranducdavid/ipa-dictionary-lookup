@@ -2,7 +2,11 @@
 import * as createPalette from '@mui/material/styles/createPalette'
 
 interface SelectionButtonColors {
-  borderColor: string
+  borderColor: {
+    deselected: string
+    required: string
+    forbidden: string
+  }
   background: {
     deselected: string
     required: string

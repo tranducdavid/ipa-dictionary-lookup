@@ -16,12 +16,24 @@ import { NotFoundPage } from './components/NotFoundPage/Loadable'
 import { useTranslation } from 'react-i18next'
 import { Box, Container, ThemeProvider } from '@mui/material'
 import { NavBar } from './components/NavBar'
-import { muiTheme } from 'styles/muiTheme'
+import { createTheme } from 'styles/muiTheme'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { useCallback, useMemo, useState } from 'react'
 
 export function App() {
   const { i18n } = useTranslation()
   const queryClient = new QueryClient()
+
+  const localMode = localStorage.getItem('mode') === 'dark' ? 'dark' : 'light'
+
+  const [mode, setMode] = useState<'light' | 'dark'>(localMode)
+  const toggle = useCallback(() => {
+    const newMode = mode === 'light' ? 'dark' : 'light'
+    setMode(newMode)
+    localStorage.setItem('mode', newMode)
+  }, [mode])
+
+  const muiTheme = useMemo(() => createTheme(mode), [mode])
 
   return (
     <ThemeProvider theme={muiTheme}>
@@ -31,16 +43,18 @@ export function App() {
         </Helmet>
 
         <QueryClientProvider client={queryClient}>
-          <NavBar />
-          <Container>
-            <Box mt={2}>
-              <Switch>
-                <Route exact path="/" component={IpaLookup} />
-                <Route exact path="/home" component={HomePage} />
-                <Route component={NotFoundPage} />
-              </Switch>
-            </Box>
-          </Container>
+          <Box sx={{ backgroundColor: muiTheme.palette.background.default, minHeight: '100vh', minWidth: '100vw' }}>
+            <NavBar toggleDarkMode={toggle} />
+            <Container>
+              <Box mt={2}>
+                <Switch>
+                  <Route exact path="/" component={IpaLookup} />
+                  <Route exact path="/home" component={HomePage} />
+                  <Route component={NotFoundPage} />
+                </Switch>
+              </Box>
+            </Container>
+          </Box>
         </QueryClientProvider>
       </BrowserRouter>
     </ThemeProvider>

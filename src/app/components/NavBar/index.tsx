@@ -1,18 +1,25 @@
-import { Box, Container, Grid, Link, styled, Typography } from '@mui/material'
+import { Box, Container, Grid, IconButton, Link, styled, useTheme } from '@mui/material'
 import { ReactComponent as GithubIcon } from './assets/github-icon.svg'
 import React from 'react'
 import { useCommitHash } from 'app/queries'
+import { PrimaryContrastTypography } from '../Typography/PrimaryTypography'
+import DarkModeIcon from '@mui/icons-material/DarkMode'
 
-export function NavBar() {
+type NavBarProps = {
+  toggleDarkMode: () => void
+}
+
+export function NavBar({ toggleDarkMode }: NavBarProps) {
   const { data: commitHash } = useCommitHash()
+  const theme = useTheme()
 
   return (
     <NavBarBox>
       <NavBarContainer>
         <Grid container flexDirection="row" alignItems="center">
-          <Typography variant="h6" fontWeight="bold">
+          <PrimaryContrastTypography variant="h6" fontWeight="bold">
             IPA Dictionary Lookup
-          </Typography>
+          </PrimaryContrastTypography>
           <CommitLink
             href={`https://github.com/tranducdavid/ipa-dictionary-lookup/tree/${commitHash}`}
             target="_blank"
@@ -22,10 +29,15 @@ export function NavBar() {
             {(commitHash ?? '').substring(0, 8)}
           </CommitLink>
         </Grid>
-        <GitHubLink href="https://github.com/tranducdavid/ipa-dictionary-lookup" target="_blank" title="Github Page" rel="noopener noreferrer">
-          <StyledGithubIcon />
-          Github
-        </GitHubLink>
+        <Grid container flexDirection="row" alignItems="center" justifyContent="flex-end">
+          <GitHubLink href="https://github.com/tranducdavid/ipa-dictionary-lookup" target="_blank" title="Github Page" rel="noopener noreferrer">
+            <StyledGithubIcon />
+            Github
+          </GitHubLink>
+          <IconButton sx={{ color: theme.palette.primary.contrastText }} onClick={toggleDarkMode}>
+            <DarkModeIcon fontSize="small" />
+          </IconButton>
+        </Grid>
       </NavBarContainer>
     </NavBarBox>
   )
