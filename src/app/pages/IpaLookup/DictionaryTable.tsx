@@ -10,7 +10,7 @@ import { Button, Grid, Input, styled, TableFooter, TablePagination, useTheme, Bu
 import TablePaginationActions from '@mui/material/TablePagination/TablePaginationActions'
 import { IpaDictionary } from 'app/types'
 import { useState, useMemo, useCallback, MouseEvent, ChangeEvent } from 'react'
-import { debounce } from 'app/utils'
+import { debounce, invert } from 'app/utils'
 
 type DictionaryTableProps = {
   data: IpaDictionary
@@ -123,6 +123,6 @@ const RegexButton = styled(Button)<RegexButtonProps>(({ isRegexMode, theme }) =>
   color: isRegexMode ? theme.palette.primary.contrastText : theme.palette.text.primary,
   backgroundColor: isRegexMode ? theme.palette.primary.main : 'transparent',
   '&:hover': {
-    ...(isRegexMode ? { backgroundColor: theme.palette.primary[theme.palette.mode] } : {}),
+    ...(isRegexMode ? { backgroundColor: theme.palette.primary[invert(theme.palette.mode)] } : {}),
   },
 }))

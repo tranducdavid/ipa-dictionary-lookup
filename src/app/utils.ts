@@ -34,3 +34,7 @@ export function debounce<TF extends (...args: any) => any>(f: TF, timeout = 300)
     }, timeout)
   }
 }
+
+export function invert(mode: 'light' | 'dark') {
+  return mode === 'light' ? 'dark' : 'light'
+}

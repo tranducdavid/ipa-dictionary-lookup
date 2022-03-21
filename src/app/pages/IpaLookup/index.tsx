@@ -92,8 +92,15 @@ export function IpaLookup() {
           <Box sx={{ position: 'relative' }}>
             <DictionaryTable data={filteredDictionary ?? []} />
             <TextPrimaryTypography sx={{ opacity: 0.8, fontSize: '0.75rem', marginTop: theme.spacing(1) }} textAlign="center">
-              Data source:
-              <Link href={`https://github.com/open-dict-data/ipa-dict`} target="_blank" title="Github Page" rel="noopener noreferrer" alignSelf="center">
+              Data source:&nbsp;
+              <Link
+                href={`https://github.com/open-dict-data/ipa-dict`}
+                sx={{ color: theme.palette.text.secondary, textDecorationColor: theme.palette.text.secondary }}
+                target="_blank"
+                title="Github Page"
+                rel="noopener noreferrer"
+                alignSelf="center"
+              >
                 https://github.com/open-dict-data/ipa-dict
               </Link>
             </TextPrimaryTypography>
