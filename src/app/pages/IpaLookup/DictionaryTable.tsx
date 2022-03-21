@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import { Input, styled, TableFooter, TablePagination, useTheme } from '@mui/material'
+import { Button, Grid, Input, styled, TableFooter, TablePagination, useTheme, ButtonProps, Tooltip, Typography } from '@mui/material'
 import TablePaginationActions from '@mui/material/TablePagination/TablePaginationActions'
 import { IpaDictionary } from 'app/types'
 import { useState, useMemo, useCallback, MouseEvent, ChangeEvent } from 'react'
@@ -43,10 +43,18 @@ export function DictionaryTable({ data }: DictionaryTableProps) {
     debouncedSetSearchValue(event.target.value)
   }
 
-  const displayData: IpaDictionary = useMemo(
-    () => (searchValue !== '' ? data.filter(e => e.pronunciation.some(e => e.includes(searchValue)) || e.spelling.includes(searchValue)) : data),
-    [data, searchValue],
-  )
+  const [isRegexMode, setIsRegexMode] = useState(false)
+
+  const displayData: IpaDictionary = useMemo(() => {
+    if (searchValue !== '') {
+      if (isRegexMode) {
+        const regex = new RegExp(searchValue)
+        return data.filter(e => e.pronunciation.some(e => regex.exec(e)) || regex.exec(e.spelling))
+      }
+      return data.filter(e => e.pronunciation.some(e => e.includes(searchValue)) || e.spelling.includes(searchValue))
+    }
+    return data
+  }, [data, isRegexMode, searchValue])
 
   return (
     <TableContainer component={Paper}>
@@ -59,8 +67,15 @@ export function DictionaryTable({ data }: DictionaryTableProps) {
         </TableHead>
         <TableBody>
           <TableRow key="i:search">
-            <TableCell sx={{ paddingTop: 0, paddingBottom: 0 }} colSpan={2}>
-              <Input sx={{ height: 33, fontSize: '0.875rem' }} placeholder="search" fullWidth disableUnderline onChange={handleSearchChange} />
+            <TableCell sx={{ paddingTop: 0, paddingBottom: 0, paddingRight: 0 }} colSpan={2}>
+              <Grid container flexDirection="row">
+                <Input sx={{ height: 33, fontSize: '0.875rem', flexGrow: 1 }} placeholder="search" disableUnderline onChange={handleSearchChange} />
+                <Tooltip title="Use regular expression">
+                  <RegexButton isRegexMode={isRegexMode} onClick={() => setIsRegexMode(v => !v)}>
+                    <Typography>.*</Typography>
+                  </RegexButton>
+                </Tooltip>
+              </Grid>
             </TableCell>
           </TableRow>
           {(rowsPerPage > 0 ? displayData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : displayData).map(row => (
@@ -95,4 +110,19 @@ export function DictionaryTable({ data }: DictionaryTableProps) {
 const TableHeadCell = styled(TableCell)(({ theme }) => ({
   color: theme.palette.primary.contrastText,
   fontWeight: theme.typography.fontWeightBold,
+}))
+
+type RegexButtonProps = {
+  isRegexMode: boolean
+} & ButtonProps
+
+const RegexButton = styled(Button)<RegexButtonProps>(({ isRegexMode, theme }) => ({
+  padding: '0px 6px',
+  margin: '6px',
+  minWidth: 0,
+  color: isRegexMode ? theme.palette.primary.contrastText : theme.palette.text.primary,
+  backgroundColor: isRegexMode ? theme.palette.primary.main : 'transparent',
+  '&:hover': {
+    ...(isRegexMode ? { backgroundColor: theme.palette.primary[theme.palette.mode] } : {}),
+  },
 }))
