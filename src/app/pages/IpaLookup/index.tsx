@@ -64,7 +64,7 @@ export function IpaLookup() {
         <Grid item xs={12} md={6}>
           <TextPrimaryTypography variant="h6">
             Letters
-            <HelpTooltipIcon tooltip="Clicking on a button changes the requirement for the dictionary. Blue is required, red is forbidden, white is either." />
+            <HelpTooltipIcon tooltip="Clicking on a button changes the requirement for the dictionary. Blue is required, red is forbidden." />
           </TextPrimaryTypography>
           <SelectionButtonRow symbols={letters} state={lettersState} setState={setLettersState} />
 
