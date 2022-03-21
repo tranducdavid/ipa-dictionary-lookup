@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ipa-dictionary-lookup/static/css/main.e18a66c1.css",
-    "main.js": "/ipa-dictionary-lookup/static/js/main.01be543c.js",
-    "static/js/752.b44a0b1a.chunk.js": "/ipa-dictionary-lookup/static/js/752.b44a0b1a.chunk.js",
+    "main.js": "/ipa-dictionary-lookup/static/js/main.a51c38fa.js",
+    "static/js/752.3918e841.chunk.js": "/ipa-dictionary-lookup/static/js/752.3918e841.chunk.js",
     "static/js/621.518d4485.chunk.js": "/ipa-dictionary-lookup/static/js/621.518d4485.chunk.js",
     "static/js/129.6ced4e68.chunk.js": "/ipa-dictionary-lookup/static/js/129.6ced4e68.chunk.js",
     "static/js/27.fa75e54c.chunk.js": "/ipa-dictionary-lookup/static/js/27.fa75e54c.chunk.js",
@@ -13,6 +13,6 @@
   },
   "entrypoints": [
     "static/css/main.e18a66c1.css",
-    "static/js/main.01be543c.js"
+    "static/js/main.a51c38fa.js"
   ]
 }
