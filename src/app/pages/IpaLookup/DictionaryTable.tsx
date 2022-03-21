@@ -59,6 +59,10 @@ export function DictionaryTable({ data }: DictionaryTableProps) {
   return (
     <TableContainer component={Paper}>
       <Table size="small">
+        <colgroup>
+          <col style={{ width: '50%' }} />
+          <col style={{ width: '50%' }} />
+        </colgroup>
         <TableHead>
           <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
             <TableHeadCell>Spelling</TableHeadCell>
