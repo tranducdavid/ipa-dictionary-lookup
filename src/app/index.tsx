@@ -18,20 +18,18 @@ import { Box, Container, ThemeProvider } from '@mui/material'
 import { NavBar } from './components/NavBar'
 import { createTheme } from 'styles/muiTheme'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo } from 'react'
+import { usePersistentState } from './hooks'
 
 export function App() {
   const { i18n } = useTranslation()
   const queryClient = new QueryClient()
 
-  const localMode = localStorage.getItem('mode') === 'dark' ? 'dark' : 'light'
-
-  const [mode, setMode] = useState<'light' | 'dark'>(localMode)
+  const [mode, setMode] = usePersistentState<'light' | 'dark'>('mode', 'dark')
   const toggle = useCallback(() => {
     const newMode = mode === 'light' ? 'dark' : 'light'
     setMode(newMode)
-    localStorage.setItem('mode', newMode)
-  }, [mode])
+  }, [mode, setMode])
 
   const muiTheme = useMemo(() => createTheme(mode), [mode])
 
