@@ -11,6 +11,7 @@ import TablePaginationActions from '@mui/material/TablePagination/TablePaginatio
 import { IpaDictionary } from 'app/types'
 import { useState, useMemo, useCallback, MouseEvent, ChangeEvent } from 'react'
 import { debounce, invert } from 'app/utils'
+import { usePersistentState } from 'app/hooks'
 
 type DictionaryTableProps = {
   data: IpaDictionary
@@ -43,18 +44,21 @@ export function DictionaryTable({ data }: DictionaryTableProps) {
     debouncedSetSearchValue(event.target.value)
   }
 
-  const [isRegexMode, setIsRegexMode] = useState(false)
+  const [isRegexMode, setIsRegexMode] = usePersistentState('regexMode', false)
+  const [isWholeWordMode, setIsWholeWordMode] = usePersistentState('wholeWordMode', false)
 
   const displayData: IpaDictionary = useMemo(() => {
     if (searchValue !== '') {
       if (isRegexMode) {
-        const regex = new RegExp(searchValue)
+        const regex = new RegExp(isWholeWordMode ? `^${searchValue}$` : searchValue)
         return data.filter(e => e.pronunciation.some(e => regex.exec(e)) || regex.exec(e.spelling))
       }
-      return data.filter(e => e.pronunciation.some(e => e.includes(searchValue)) || e.spelling.includes(searchValue))
+      return isWholeWordMode
+        ? data.filter(e => e.pronunciation.includes(searchValue) || e.spelling === searchValue)
+        : data.filter(e => e.pronunciation.some(e => e.includes(searchValue)) || e.spelling.includes(searchValue))
     }
     return data
-  }, [data, isRegexMode, searchValue])
+  }, [data, isRegexMode, isWholeWordMode, searchValue])
 
   return (
     <TableContainer component={Paper}>
@@ -74,6 +78,11 @@ export function DictionaryTable({ data }: DictionaryTableProps) {
             <TableCell sx={{ paddingTop: 0, paddingBottom: 0, paddingRight: 0 }} colSpan={2}>
               <Grid container flexDirection="row">
                 <Input sx={{ height: 33, fontSize: '0.875rem', flexGrow: 1 }} placeholder="search" disableUnderline onChange={handleSearchChange} />
+                <Tooltip title="Match whole word">
+                  <MatchWholeWordButton isWholeWordMode={isWholeWordMode} onClick={() => setIsWholeWordMode(v => !v)}>
+                    <MatchWholeWordTypography>ab</MatchWholeWordTypography>
+                  </MatchWholeWordButton>
+                </Tooltip>
                 <Tooltip title="Use regular expression">
                   <RegexButton isRegexMode={isRegexMode} onClick={() => setIsRegexMode(v => !v)}>
                     <Typography>.*</Typography>
@@ -116,14 +125,34 @@ const TableHeadCell = styled(TableCell)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightBold,
 }))
 
+type MatchWholeWordButtonProps = {
+  isWholeWordMode: boolean
+} & ButtonProps
+
+const MatchWholeWordButton = styled(Button)<MatchWholeWordButtonProps>(({ isWholeWordMode, theme }) => ({
+  padding: '0px 6px',
+  margin: '6px 3px 6px 6px',
+  minWidth: '28px',
+  color: isWholeWordMode ? theme.palette.primary.contrastText : theme.palette.text.primary,
+  backgroundColor: isWholeWordMode ? theme.palette.primary.main : 'transparent',
+  '&:hover': {
+    ...(isWholeWordMode ? { backgroundColor: theme.palette.primary[invert(theme.palette.mode)] } : {}),
+  },
+  textTransform: 'none',
+}))
+
+const MatchWholeWordTypography = styled(Typography)({
+  textDecoration: 'underline',
+})
+
 type RegexButtonProps = {
   isRegexMode: boolean
 } & ButtonProps
 
 const RegexButton = styled(Button)<RegexButtonProps>(({ isRegexMode, theme }) => ({
   padding: '0px 6px',
-  margin: '6px',
-  minWidth: 0,
+  margin: '6px 6px 6px 0px',
+  minWidth: '28px',
   color: isRegexMode ? theme.palette.primary.contrastText : theme.palette.text.primary,
   backgroundColor: isRegexMode ? theme.palette.primary.main : 'transparent',
   '&:hover': {
